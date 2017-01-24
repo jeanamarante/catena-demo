@@ -1,0 +1,19 @@
+{
+	"name": "catena-demo",
+	"description": "Chess game made using catena.",
+	"author": {
+		"name": "Jean Amarante",
+		"url": "https://github.com/jeanamarante"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/jeanamarante/catena-demo"
+	},
+	"license": "MIT",
+	"engines": {
+		"node": ">=0.10.0"
+	},
+	"dependencies": {
+		"catena": ">=0.8.0"
+	}
+}
