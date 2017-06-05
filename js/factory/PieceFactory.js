@@ -11,7 +11,7 @@ CLASS.PieceFactory.append = {
      * @function getPiece
      * @param {String} color
      * @param {String} type
-     * @return {Piece}
+     * @return {CLASS.Piece}
      * @api public
      */
 

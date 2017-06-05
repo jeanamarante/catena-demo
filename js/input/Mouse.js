@@ -25,7 +25,7 @@ SINGLE.Mouse = {
 
     /**
      * @function addRectListener
-     * @param {Rect} listener
+     * @param {CLASS.Rect} listener
      * @api public
      */
 

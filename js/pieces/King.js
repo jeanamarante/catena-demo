@@ -13,20 +13,20 @@ CLASS.King.append = {
     // The king moves one square in any direction.
 
     /**
-     * @function testMoves
-     * @param {BoardCell} start
-     * @param {BoardCell} end
+     * @function checkMoves
+     * @param {CLASS.BoardCell} start
+     * @param {CLASS.BoardCell} end
      * @return {Boolean}
      * @api public
      */
 
-    testMoves: function (start, end) {
-        if (this.testVerticalMove(start, end, 1, false, false)) {
+    checkMoves: function (start, end) {
+        if (this.checkVerticalMove(start, end, 1, false, false)) {
             return true;
-        } else if (this.testHorizontalMove(start, end, 1, false, false)) {
+        } else if (this.checkHorizontalMove(start, end, 1, false, false)) {
             return true;
         } else {
-            return this.testDiagonalMove(start, end, [1, 1], false, false);
+            return this.checkDiagonalMove(start, end, [1, 1], false, false);
         }
     }
 };

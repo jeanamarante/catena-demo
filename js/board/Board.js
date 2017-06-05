@@ -2,7 +2,7 @@
  * Handles the interactable states of the game.
  *
  * @class Board
- * @param {Canvas} canvas
+ * @param {CLASS.Canvas} canvas
  */
 
 CLASS.Board = function (canvas) {
@@ -23,12 +23,12 @@ CLASS.Board.append = {
      */
 
     hasTarget: function () {
-        return this._target !== null;
+        return !isNull(this._target);
     },
 
     /**
      * @function getCellGrid
-     * @return {BoardCellGrid}
+     * @return {CLASS.BoardCellGrid}
      * @api public
      */
 
@@ -40,7 +40,7 @@ CLASS.Board.append = {
      * Listen for clicked cell.
      *
      * @function onMouseClick
-     * @param {BoardCell} cell
+     * @param {CLASS.BoardCell} cell
      * @api public
      */
 
@@ -61,7 +61,7 @@ CLASS.Board.append = {
 
     /**
      * @function canFocusCell
-     * @param {BoardCell} cell
+     * @param {CLASS.BoardCell} cell
      * @return {Boolean}
      * @api private
      */
@@ -73,7 +73,7 @@ CLASS.Board.append = {
 
     /**
      * @function focusCell
-     * @param {BoardCell} cell
+     * @param {CLASS.BoardCell} cell
      * @api private
      */
 
@@ -104,7 +104,7 @@ CLASS.Board.append = {
      * Move piece in cell to new cell.
      *
      * @function movePiece
-     * @param {BoardCell} cell
+     * @param {CLASS.BoardCell} cell
      * @api private
      */
 

@@ -14,14 +14,14 @@ CLASS.Bishop.append = {
     // but may not leap over other pieces.
 
     /**
-     * @function testMoves
-     * @param {BoardCell} start
-     * @param {BoardCell} end
+     * @function checkMoves
+     * @param {CLASS.BoardCell} start
+     * @param {CLASS.BoardCell} end
      * @return {Boolean}
      * @api public
      */
 
-    testMoves: function (start, end) {
-        return this.testDiagonalMove(start, end, [Infinity, Infinity], false, false);
+    checkMoves: function (start, end) {
+        return this.checkDiagonalMove(start, end, [Infinity, Infinity], false, false);
     }
 };

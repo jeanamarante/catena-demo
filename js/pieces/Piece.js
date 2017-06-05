@@ -13,23 +13,23 @@ CLASS.Piece = function (color, type) {
 
 CLASS.Piece.append = {
     /**
-     * Test all possible movement combinations.
+     * Check all possible movement combinations.
      *
-     * @function testMoves
-     * @param {BoardCell} start
-     * @param {BoardCell} end
+     * @function checkMoves
+     * @param {CLASS.BoardCell} start
+     * @param {CLASS.BoardCell} end
      * @return {Boolean}
      * @api abstract
      */
 
-    testMoves: function (start, end) {
+    checkMoves: function (start, end) {
         this.abstract();
     },
 
     /**
-     * @function testVerticalMove
-     * @param {BoardCell} start
-     * @param {BoardCell} end
+     * @function checkVerticalMove
+     * @param {CLASS.BoardCell} start
+     * @param {CLASS.BoardCell} end
      * @param {Number} limit
      * @param {Boolean} strictLimit
      * @param {Boolean} skipPieces
@@ -37,48 +37,48 @@ CLASS.Piece.append = {
      * @api public
      */
 
-    testVerticalMove: function (start, end, limit, strictLimit, skipPieces) {
+    checkVerticalMove: function (start, end, limit, strictLimit, skipPieces) {
         var path = start.traceVerticalPath(end);
 
         // Cells must be in the same column.
-        if (!start.isInSameColumn(end) || !this._testPath(end, path, skipPieces)) {
+        if (!start.isInSameColumn(end) || !this._checkPath(end, path, skipPieces)) {
             return false;
 
         // Can only move piece in one direction.
         } else if (strictLimit) {
-            return this._testVector(limit, start.calcVerticalVector(end));
+            return this._checkVector(limit, start.calcVerticalVector(end));
 
         // Can move piece in both directions.
         } else {
-            return this._testDistance(limit, start.calcVerticalDistance(end));
+            return this._checkDistance(limit, start.calcVerticalDistance(end));
         }
     },
 
     /**
-     * @function testHorizontallMove
-     * @param {BoardCell} start
-     * @param {BoardCell} end
+     * @function checkHorizontallMove
+     * @param {CLASS.BoardCell} start
+     * @param {CLASS.BoardCell} end
      * @param {Number} limit
      * @param {Boolean} skipPieces
      * @return {Boolean}
      * @api public
      */
 
-    testHorizontalMove: function (start, end, limit, skipPieces) {
+    checkHorizontalMove: function (start, end, limit, skipPieces) {
         var path = start.traceHorizontalPath(end);
 
         // Cells must be in the same row.
-        if (!start.isInSameRow(end) || !this._testPath(end, path, skipPieces)) {
+        if (!start.isInSameRow(end) || !this._checkPath(end, path, skipPieces)) {
             return false;
         } else {
-            return this._testDistance(limit, start.calcHorizontalDistance(end));
+            return this._checkDistance(limit, start.calcHorizontalDistance(end));
         }
     },
 
     /**
-     * @function testDiagonalMove
-     * @param {BoardCell} start
-     * @param {BoardCell} end
+     * @function checkDiagonalMove
+     * @param {CLASS.BoardCell} start
+     * @param {CLASS.BoardCell} end
      * @param {Array} limits
      * @param {Boolean} strictVerticalLimit
      * @param {Boolean} skipPieces
@@ -86,27 +86,27 @@ CLASS.Piece.append = {
      * @api public
      */
 
-    testDiagonalMove: function (start, end, limits, strictVerticalLimit, skipPieces) {
+    checkDiagonalMove: function (start, end, limits, strictVerticalLimit, skipPieces) {
         var path = start.traceDiagonalPath(end);
 
         // Cells cannot be in the same row or same column.
-        if (start.isInSameRow(end) || start.isInSameColumn(end) || !this._testPath(end, path, skipPieces)) {
+        if (start.isInSameRow(end) || start.isInSameColumn(end) || !this._checkPath(end, path, skipPieces)) {
             return false;
         }
 
-        var horizontalTest = this._testDistance(limits[1], start.calcHorizontalDistance(end));
+        var horizontalCheck = this._checkDistance(limits[1], start.calcHorizontalDistance(end));
 
         // Can only move in one direction vertically.
         if (strictVerticalLimit) {
-            return this._testVector(limits[0], start.calcVerticalVector(end)) && horizontalTest;
+            return this._checkVector(limits[0], start.calcVerticalVector(end)) && horizontalCheck;
         } else {
-            return this._testDistance(limits[0], start.calcVerticalDistance(end)) && horizontalTest;
+            return this._checkDistance(limits[0], start.calcVerticalDistance(end)) && horizontalCheck;
         }
     },
 
     /**
      * @function setCell
-     * @param {BoardCell} cell
+     * @param {CLASS.BoardCell} cell
      * @api public
      */
 
@@ -137,26 +137,26 @@ CLASS.Piece.append = {
      * Check if piece can move to new cell.
      *
      * @function canMoveToCell
-     * @param {BoardCell} cell
+     * @param {CLASS.BoardCell} cell
      * @return {Boolean}
      * @api public
      */
 
     canMoveToCell: function (cell) {
-        if (this._cell === null) {
+        if (isNull(this._cell)) {
             return false;
 
         // Prohibit moving pieces to other cells that have a piece of the same color.
         } else if (!cell.isEmpty() && this.isSameColor(cell.getPiece())) {
             return false;
         } else {
-            return this.testMoves(this._cell, cell);
+            return this.checkMoves(this._cell, cell);
         }
     },
 
     /**
      * @function getCell
-     * @return {BoardCell}
+     * @return {CLASS.BoardCell}
      * @api public
      */
 
@@ -215,15 +215,15 @@ CLASS.Piece.append = {
     },
 
     /**
-     * @function testPath
-     * @param {BoardCell} cell
+     * @function checkPath
+     * @param {CLASS.BoardCell} cell
      * @param {Array} path
      * @param {Boolean} skipPieces
      * @return {Boolean}
      * @api private
      */
 
-    _testPath: function (end, path, skipPieces) {
+    _checkPath: function (end, path, skipPieces) {
         if (path.length === 0) {
             return true;
         } else if (path.length === 1 && end.isSameCell(path[0])) {
@@ -236,14 +236,14 @@ CLASS.Piece.append = {
     /**
      * Check if vector is within the limit.
      *
-     * @function testVector
+     * @function checkVector
      * @param {Number} limit
      * @param {Number} vector
      * @return {Boolean}
      * @api private
      */
 
-    _testVector: function (limit, vector) {
+    _checkVector: function (limit, vector) {
         // Different checks depending on direction.
         if (limit < 0) {
             return vector < 0 && limit <= vector;
@@ -255,14 +255,14 @@ CLASS.Piece.append = {
     /**
      * Check if distance is within the limit.
      *
-     * @function testDistance
+     * @function checkDistance
      * @param {Number} limit
      * @param {Number} distance
      * @return {Boolean}
      * @api private
      */
 
-    _testDistance: function (limit, distance) {
+    _checkDistance: function (limit, distance) {
         return Math.abs(limit) >= distance;
     }
 };

@@ -2,12 +2,12 @@
  * Chess piece container.
  *
  * @class BoardCell
- * @param {Canvas} canvas
- * @param {Board} board
+ * @param {CLASS.Canvas} canvas
+ * @param {CLASS.Board} board
  * @param {Number} row
  * @param {Number} col
  * @param {String} color
- * @param {Piece} piece
+ * @param {CLASS.Piece} piece
  */
 
 extend('Rect', 'BoardCell');
@@ -76,7 +76,7 @@ CLASS.BoardCell.append = {
 
     /**
      * @function insertPiece
-     * @param {Piece} piece
+     * @param {CLASS.Piece} piece
      * @api public
      */
 
@@ -92,7 +92,7 @@ CLASS.BoardCell.append = {
 
     /**
      * @function calcVerticalVector
-     * @param {BoardCell} cell
+     * @param {CLASS.BoardCell} cell
      * @api public
      */
 
@@ -111,7 +111,7 @@ CLASS.BoardCell.append = {
 
     /**
      * @function traceVerticalPath
-     * @param {BoardCell} cell
+     * @param {CLASS.BoardCell} cell
      * @return {Array}
      * @api public
      */
@@ -122,7 +122,7 @@ CLASS.BoardCell.append = {
 
     /**
      * @function traceHorizontalPath
-     * @param {BoardCell} cell
+     * @param {CLASS.BoardCell} cell
      * @return {Array}
      * @api public
      */
@@ -133,7 +133,7 @@ CLASS.BoardCell.append = {
 
     /**
      * @function traceDiagonalPath
-     * @param {BoardCell} cell
+     * @param {CLASS.BoardCell} cell
      * @return {Array}
      * @api public
      */
@@ -144,7 +144,7 @@ CLASS.BoardCell.append = {
 
     /**
      * @function calcVerticalVector
-     * @param {BoardCell} cell
+     * @param {CLASS.BoardCell} cell
      * @return {Number}
      * @api public
      */
@@ -156,7 +156,7 @@ CLASS.BoardCell.append = {
 
     /**
      * @function calcVerticalDistance
-     * @param {BoardCell} cell
+     * @param {CLASS.BoardCell} cell
      * @return {Number}
      * @api public
      */
@@ -168,7 +168,7 @@ CLASS.BoardCell.append = {
 
     /**
      * @function calcHorizontalVector
-     * @param {BoardCell} cell
+     * @param {CLASS.BoardCell} cell
      * @return {Number}
      * @api public
      */
@@ -179,7 +179,7 @@ CLASS.BoardCell.append = {
 
     /**
      * @function calcHorizontalDistance
-     * @param {BoardCell} cell
+     * @param {CLASS.BoardCell} cell
      * @return {Number}
      * @api public
      */
@@ -195,7 +195,7 @@ CLASS.BoardCell.append = {
      */
 
     isEmpty: function () {
-        return this._piece === null;
+        return isNull(this._piece);
     },
 
     /**
@@ -210,7 +210,7 @@ CLASS.BoardCell.append = {
 
     /**
      * @function isSameCell
-     * @param {BoardCell} cell
+     * @param {CLASS.BoardCell} cell
      * @return {Boolean}
      * @api public
      */
@@ -221,7 +221,7 @@ CLASS.BoardCell.append = {
 
     /**
      * @function isInSameRow
-     * @param {BoardCell} cell
+     * @param {CLASS.BoardCell} cell
      * @return {Boolean}
      * @api public
      */
@@ -242,7 +242,7 @@ CLASS.BoardCell.append = {
 
     /**
      * @function isInSameColumn
-     * @param {BoardCell} cell
+     * @param {CLASS.BoardCell} cell
      * @return {Boolean}
      * @api public
      */
@@ -274,7 +274,7 @@ CLASS.BoardCell.append = {
 
     /**
      * @function getPiece
-     * @return {Piece}
+     * @return {CLASS.Piece}
      * @api public
      */
 

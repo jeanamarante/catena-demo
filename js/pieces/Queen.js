@@ -15,20 +15,20 @@ CLASS.Queen.append = {
     // not leap over other pieces.
 
     /**
-     * @function testMoves
-     * @param {BoardCell} start
-     * @param {BoardCell} end
+     * @function checkMoves
+     * @param {CLASS.BoardCell} start
+     * @param {CLASS.BoardCell} end
      * @return {Boolean}
      * @api public
      */
 
-    testMoves: function (start, end) {
-        if (this.testVerticalMove(start, end, Infinity, false, false)) {
+    checkMoves: function (start, end) {
+        if (this.checkVerticalMove(start, end, Infinity, false, false)) {
             return true;
-        } else if (this.testHorizontalMove(start, end, Infinity, false, false)) {
+        } else if (this.checkHorizontalMove(start, end, Infinity, false, false)) {
             return true;
         } else {
-            return this.testDiagonalMove(start, end, [Infinity, Infinity], false, false);
+            return this.checkDiagonalMove(start, end, [Infinity, Infinity], false, false);
         }
     }
 };

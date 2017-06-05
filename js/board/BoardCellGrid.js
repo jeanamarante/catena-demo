@@ -2,8 +2,8 @@
  * Container for all board cells.
  *
  * @class BoardCellGrid
- * @param {Canvas} canvas
- * @param {Board} board
+ * @param {CLASS.Canvas} canvas
+ * @param {CLASS.Board} board
  */
 
 CLASS.BoardCellGrid = function (canvas, board) {
@@ -19,8 +19,8 @@ CLASS.BoardCellGrid.append = {
      * Return collection of cells with pieces.
      *
      * @function traceVerticalPath
-     * @param {BoardCell} start
-     * @param {BoardCell} end
+     * @param {CLASS.BoardCell} start
+     * @param {CLASS.BoardCell} end
      * @return {Array}
      * @api public
      */
@@ -57,8 +57,8 @@ CLASS.BoardCellGrid.append = {
 
     /**
      * @function traceHorizontalPath
-     * @param {BoardCell} start
-     * @param {BoardCell} end
+     * @param {CLASS.BoardCell} start
+     * @param {CLASS.BoardCell} end
      * @return {Array}
      * @api public
      */
@@ -87,8 +87,8 @@ CLASS.BoardCellGrid.append = {
 
     /**
      * @function traceHorizontalPath
-     * @param {BoardCell} start
-     * @param {BoardCell} end
+     * @param {CLASS.BoardCell} start
+     * @param {CLASS.BoardCell} end
      * @return {Array}
      * @api public
      */
@@ -123,7 +123,7 @@ CLASS.BoardCellGrid.append = {
      * @function getCell
      * @param {Number} row
      * @param {Number} col
-     * @return {BoardCell}
+     * @return {CLASS.BoardCell}
      * @api public
      */
 
@@ -135,7 +135,7 @@ CLASS.BoardCellGrid.append = {
      * Build chess board.
      *
      * @function build
-     * @param {Canvas} canvas
+     * @param {CLASS.Canvas} canvas
      * @api private
      */
 

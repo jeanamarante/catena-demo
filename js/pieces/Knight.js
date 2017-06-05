@@ -16,14 +16,14 @@ CLASS.Knight.append = {
     // vertically. The knight is the only piece that can leap over other pieces.
 
     /**
-     * @function testMoves
-     * @param {BoardCell} start
-     * @param {BoardCell} end
+     * @function checkMoves
+     * @param {CLASS.BoardCell} start
+     * @param {CLASS.BoardCell} end
      * @return {Boolean}
      * @api public
      */
 
-    testMoves: function (start, end) {
+    checkMoves: function (start, end) {
         var v = start.calcVerticalDistance(end);
         var h = start.calcHorizontalDistance(end);
 
