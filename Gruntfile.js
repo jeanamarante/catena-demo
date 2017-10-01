@@ -5,7 +5,9 @@ module.exports = function (grunt) {
         catena: {
             src: 'js',
             dest: 'dist/app.js',
-            watch: true
+            watch: true,
+            externs: [],
+            license: 'LICENSE'
         }
     });
 };
