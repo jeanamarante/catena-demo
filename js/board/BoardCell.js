@@ -262,6 +262,22 @@ CLASS.BoardCell.append = {
     },
 
     /**
+     * @function isDiagonal
+     * @param {CLASS.BoardCell} cell
+     * @return {Boolean}
+     * @api public
+     */
+
+    isDiagonal: function (cell) {
+        // One diagonal cell is traversed after one row and column.
+        // Both directions must have the same distance.
+        var v = this.calcVerticalDistance(cell);
+        var h = this.calcHorizontalDistance(cell);
+
+        return v > 0 && h > 0 && v === h;
+    },
+
+    /**
      * @function getColor
      * @return {String}
      * @api public

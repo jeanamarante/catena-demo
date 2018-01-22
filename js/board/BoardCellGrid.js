@@ -96,16 +96,13 @@ CLASS.BoardCellGrid.append = {
     traceDiagonalPath: function (start, end) {
         var path = [];
 
-        // Start and end cells cannot be in the same row or same column.
-        if (start.isSameCell(end) || start.isInSameRow(end) || start.isInSameColumn(end)) { return path; }
+        if (!start.isDiagonal(end)) { return path; }
 
         var vInc = start.getColumn() < end.getColumn() ? 1 : -1;
         var hInc = start.getRow() < end.getRow() ? 1 : -1;
         var row = start.getRow() + hInc;
         var col = start.getColumn() + vInc;
-
-        // One diagonal cell is traversed after one row and column.
-        var max = (start.calcHorizontalDistance(end) + start.calcVerticalDistance(end)) / 2;
+        var max = (start.calcVerticalDistance(end) + start.calcHorizontalDistance(end)) / 2;
 
         for (var i = 1; i < max; i++) {
             var cell = this._grid[row][col];

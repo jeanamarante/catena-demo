@@ -90,7 +90,7 @@ CLASS.Piece.append = {
         var path = start.traceDiagonalPath(end);
 
         // Cells cannot be in the same row or same column.
-        if (start.isInSameRow(end) || start.isInSameColumn(end) || !this._checkPath(end, path, skipPieces)) {
+        if (!start.isDiagonal(end) || !this._checkPath(end, path, skipPieces)) {
             return false;
         }
 
