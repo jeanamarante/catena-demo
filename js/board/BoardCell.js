@@ -28,7 +28,7 @@ CLASS.BoardCell = function (canvas, board, row, col, color, piece) {
 
     SINGLE.Mouse.addRectListener(this);
 
-    if (piece !== null) {
+    if (!isNull(piece)) {
         // Cell will render after inserting piece.
         this.insertPiece(piece);
     } else {

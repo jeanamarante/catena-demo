@@ -20,7 +20,7 @@ SINGLE.Mouse = {
 
     setCanvasRegion: function (canvas) {
         this._canvas = canvas;
-        this._canvas.onclick = this._onClick.bind(this);
+        this._canvas.onclick = this._onCanvasClick.bind(this);
     },
 
     /**
@@ -30,20 +30,20 @@ SINGLE.Mouse = {
      */
 
     addRectListener: function (listener) {
-        if (this._listeners.indexOf(listener) === -1) {
-            this._listeners.push(listener);
-        }
+        if (!isInstance(CLASS.Rect, listener) || this._listeners.indexOf(listener) !== -1) { return undefined; }
+
+        this._listeners.push(listener);
     },
 
     /**
-     * Mouse click callback.
+     * Mouse click callback for canvas element.
      *
-     * @function onClick
+     * @function onCanvasClick
      * @param {MouseEvent} e
      * @api private
      */
 
-    _onClick: function (e) {
+    _onCanvasClick: function (e) {
         // Mouse click coordinates relative to the canvas region.
         var x = e.layerX;
         var y = e.layerY;

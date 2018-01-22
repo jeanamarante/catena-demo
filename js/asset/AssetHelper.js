@@ -54,7 +54,7 @@ SINGLE.AssetHelper = {
      */
 
     _pieceImageExists: function (color, type) {
-        return this._pieceImages[color] !== undefined && this._pieceImages[color][type] !== undefined;
+        return !isUndefined(this._pieceImages[color]) && !isUndefined(this._pieceImages[color][type]);
     },
 
     /**
