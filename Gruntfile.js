@@ -3,11 +3,13 @@ module.exports = function (grunt) {
 
     grunt.config.init({
         catena: {
-            src: 'js',
-            dest: 'dist/app.js',
-            watch: true,
-            externs: [],
-            license: 'LICENSE'
+            dist: {
+                src: 'js/',
+                dest: 'dist/app.js',
+                options: {
+                    license: 'LICENSE'
+                }
+            }
         }
     });
 };
