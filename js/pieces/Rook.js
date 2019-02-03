@@ -1,5 +1,6 @@
 /**
- * @class Rook
+ * @class CLASS.Rook
+ * @extends CLASS.Piece
  * @param {String} color
  */
 
@@ -22,12 +23,6 @@ CLASS.Rook.append = {
      */
 
     checkMoves: function (start, end) {
-        if (this.checkVerticalMove(start, end, Infinity, false, false)) {
-            return true;
-        } else if (this.checkHorizontalMove(start, end, Infinity, false, false)) {
-            return true;
-        } else {
-            return false;
-        }
+        return this.checkVerticalMove(start, end, Infinity, false, false) || this.checkHorizontalMove(start, end, Infinity, false, false);
     }
 };

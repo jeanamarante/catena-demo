@@ -1,5 +1,6 @@
 /**
- * @class Pawn
+ * @class CLASS.Pawn
+ * @extends CLASS.Piece
  * @param {String} color
  */
 
@@ -30,7 +31,7 @@ CLASS.Pawn.append = {
 
     checkMoves: function (start, end) {
         // White pieces move up, black pieces move down.
-        var verticalLimit = this.isWhite() ? -1 : 1;
+        let verticalLimit = this.isWhite() ? -1 : 1;
 
         if (this.checkVerticalMove(start, end, verticalLimit, true, false)) {
             // Piece has been moved.

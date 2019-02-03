@@ -1,14 +1,13 @@
 /**
- * Handles the interactable states of the game.
- *
- * @class Board
+ * @class CLASS.Board
+ * @classdesc Handles the interactable states of the game.
  * @param {CLASS.Canvas} canvas
  */
 
 CLASS.Board = function (canvas) {
     this._cells = new CLASS.BoardCellGrid(canvas, this);
 
-    // Pointer to currently selected cell.
+    // Currently selected cell.
     this._target = null;
 
     // Which player's turn is it?
@@ -37,8 +36,6 @@ CLASS.Board.append = {
     },
 
     /**
-     * Listen for clicked cell.
-     *
      * @function onMouseClick
      * @param {CLASS.BoardCell} cell
      * @api public
@@ -111,7 +108,7 @@ CLASS.Board.append = {
     _movePiece: function (cell) {
         if (!this.hasTarget()) { return undefined; }
 
-        var canMove = this._target.getPiece().canMoveToCell(cell);
+        let canMove = this._target.getPiece().canMoveToCell(cell);
 
         if (canMove) {
             // Remove piece if there is any in the destination cell.

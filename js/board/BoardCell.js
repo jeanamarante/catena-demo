@@ -1,7 +1,7 @@
 /**
- * Chess piece container.
- *
- * @class BoardCell
+ * @class CLASS.BoardCell
+ * @classdesc Piece container.
+ * @extends CLASS.Rect
  * @param {CLASS.Canvas} canvas
  * @param {CLASS.Board} board
  * @param {Number} row
@@ -13,8 +13,8 @@
 extend('Rect', 'BoardCell');
 
 CLASS.BoardCell = function (canvas, board, row, col, color, piece) {
-    var x = col * CONST.CELL_WIDTH;
-    var y = row * CONST.CELL_HEIGHT;
+    let x = col * CONST.CELL_WIDTH;
+    let y = row * CONST.CELL_HEIGHT;
 
     this.super(x, y, CONST.CELL_WIDTH, CONST.CELL_HEIGHT);
 
@@ -24,7 +24,7 @@ CLASS.BoardCell = function (canvas, board, row, col, color, piece) {
     this._color = color;
     this._piece = null;
     this._focused = false;
-    this._context = canvas.getContext();
+    this._context2D = canvas.getContext2D();
 
     SINGLE.Mouse.addRectListener(this);
 
@@ -43,9 +43,9 @@ CLASS.BoardCell.append = {
      */
 
     render: function () {
-        this._context.fillStyle = this.getColor();
+        this._context2D.fillStyle = this.getColor();
 
-        this._context.fillRect(this.getX(), this.getY(), this.getWidth(), this.getHeight());
+        this._context2D.fillRect(this.getX(), this.getY(), this.getWidth(), this.getHeight());
 
         // Render piece on top of background.
         this._renderPiece();
@@ -92,21 +92,23 @@ CLASS.BoardCell.append = {
 
     /**
      * @function calcVerticalVector
-     * @param {CLASS.BoardCell} cell
+     * @param {(CLASS.BoardCell|null)} cell
      * @api public
      */
 
     removePiece: function () {
-        if (this.isEmpty()) { return null; }
+        if (this.isEmpty()) {
+            return null;
+        } else {
+            let piece = this._piece;
 
-        var piece = this._piece;
+            this._piece.removeCell();
+            this._piece = null;
 
-        this._piece.removeCell();
-        this._piece = null;
+            this.render();
 
-        this.render();
-
-        return piece;
+            return piece;
+        }
     },
 
     /**
@@ -271,8 +273,8 @@ CLASS.BoardCell.append = {
     isDiagonal: function (cell) {
         // One diagonal cell is traversed after one row and column.
         // Both directions must have the same distance.
-        var v = this.calcVerticalDistance(cell);
-        var h = this.calcHorizontalDistance(cell);
+        let v = this.calcVerticalDistance(cell);
+        let h = this.calcHorizontalDistance(cell);
 
         return v > 0 && h > 0 && v === h;
     },
@@ -299,8 +301,6 @@ CLASS.BoardCell.append = {
     },
 
     /**
-     * Mouse click callback.
-     *
      * @function onMouseClick
      * @param {MouseEvent} e
      * @api public
@@ -319,6 +319,6 @@ CLASS.BoardCell.append = {
     _renderPiece: function () {
         if (this.isEmpty()) { return undefined; }
 
-        this._context.drawImage(this._piece.getImage(), this.getX(), this.getY(), this.getWidth(), this.getHeight());
+        this._context2D.drawImage(this._piece.getImage(), this.getX(), this.getY(), this.getWidth(), this.getHeight());
     }
 };

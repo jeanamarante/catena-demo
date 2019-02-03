@@ -1,7 +1,6 @@
 /**
- * Container for all board cells.
- *
- * @class BoardCellGrid
+ * @class CLASS.BoardCellGrid
+ * @classdesc Container for all board cells.
  * @param {CLASS.Canvas} canvas
  * @param {CLASS.Board} board
  */
@@ -26,25 +25,25 @@ CLASS.BoardCellGrid.append = {
      */
 
     traceVerticalPath: function (start, end) {
-        var path = [];
+        let path = [];
 
         // Start and end cells must be in the same column.
         if (start.isSameCell(end) || !start.isInSameColumn(end)) { return path; }
 
         // Direction
-        var inc = start.getRow() < end.getRow() ? 1 : -1;
+        let inc = start.getRow() < end.getRow() ? 1 : -1;
 
         // Start from adjacent row.
-        var row = start.getRow() + inc;
-        var col = start.getColumn();
+        let row = start.getRow() + inc;
+        let col = start.getColumn();
 
         // Distance of how many cells are gonna be checked.
-        var max = start.calcVerticalDistance(end);
+        let max = start.calcVerticalDistance(end);
 
         // Never check the start cell. Only push to path the end
         // cell and the cells between the start and end cells.
-        for (var i = 1; i < max; i++) {
-            var cell = this._grid[row][col];
+        for (let i = 1; i < max; i++) {
+            let cell = this._grid[row][col];
 
             // Ignore empty cells.
             if (!cell.isEmpty()) { path.push(cell); }
@@ -64,18 +63,18 @@ CLASS.BoardCellGrid.append = {
      */
 
     traceHorizontalPath: function (start, end) {
-        var path = [];
+        let path = [];
 
         // Start and end cells must be in the same row.
         if (start.isSameCell(end) || !start.isInSameRow(end)) { return path; }
 
-        var inc = start.getColumn() < end.getColumn() ? 1 : -1;
-        var row = start.getRow();
-        var col = start.getColumn() + inc;
-        var max = start.calcHorizontalDistance(end);
+        let inc = start.getColumn() < end.getColumn() ? 1 : -1;
+        let row = start.getRow();
+        let col = start.getColumn() + inc;
+        let max = start.calcHorizontalDistance(end);
 
-        for (var i = 1; i < max; i++) {
-            var cell = this._grid[row][col];
+        for (let i = 1; i < max; i++) {
+            let cell = this._grid[row][col];
 
             if (!cell.isEmpty()) { path.push(cell); }
 
@@ -94,18 +93,18 @@ CLASS.BoardCellGrid.append = {
      */
 
     traceDiagonalPath: function (start, end) {
-        var path = [];
+        let path = [];
 
         if (!start.isDiagonal(end)) { return path; }
 
-        var vInc = start.getColumn() < end.getColumn() ? 1 : -1;
-        var hInc = start.getRow() < end.getRow() ? 1 : -1;
-        var row = start.getRow() + hInc;
-        var col = start.getColumn() + vInc;
-        var max = (start.calcVerticalDistance(end) + start.calcHorizontalDistance(end)) / 2;
+        let vInc = start.getColumn() < end.getColumn() ? 1 : -1;
+        let hInc = start.getRow() < end.getRow() ? 1 : -1;
+        let row = start.getRow() + hInc;
+        let col = start.getColumn() + vInc;
+        let max = (start.calcVerticalDistance(end) + start.calcHorizontalDistance(end)) / 2;
 
-        for (var i = 1; i < max; i++) {
-            var cell = this._grid[row][col];
+        for (let i = 1; i < max; i++) {
+            let cell = this._grid[row][col];
 
             if (!cell.isEmpty()) { path.push(cell); }
 
@@ -137,19 +136,19 @@ CLASS.BoardCellGrid.append = {
      */
 
     _build: function (canvas) {
-        var oddRow = false;
+        let oddRow = false;
 
         // Rows
-        for (var i = 0; i < CONST.BOARD_LENGTH; i++) {
+        for (let i = 0; i < CONST.BOARD_LENGTH; i++) {
             // Top row pieces are black.
-            var pieceColor = i < 2 ? CONST.BLACK : CONST.WHITE;
+            let pieceColor = i < 2 ? CONST.BLACK : CONST.WHITE;
 
             this._grid[i] = [];
 
             // Columns
-            for (var j = 0; j < CONST.BOARD_LENGTH; j++) {
-                var type = CONST.BOARD_LAYOUT[i][j];
-                var cellColor = '';
+            for (let j = 0; j < CONST.BOARD_LENGTH; j++) {
+                let type = CONST.BOARD_LAYOUT[i][j];
+                let cellColor = '';
 
                 // Odd rows follow a different color pattern.
                 if (oddRow) {

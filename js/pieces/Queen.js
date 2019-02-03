@@ -1,5 +1,6 @@
 /**
- * @class Queen
+ * @class CLASS.Queen
+ * @extends CLASS.Piece
  * @param {String} color
  */
 
@@ -23,9 +24,7 @@ CLASS.Queen.append = {
      */
 
     checkMoves: function (start, end) {
-        if (this.checkVerticalMove(start, end, Infinity, false, false)) {
-            return true;
-        } else if (this.checkHorizontalMove(start, end, Infinity, false, false)) {
+        if (this.checkVerticalMove(start, end, Infinity, false, false) || this.checkHorizontalMove(start, end, Infinity, false, false)) {
             return true;
         } else {
             return this.checkDiagonalMove(start, end, [Infinity, Infinity], false, false);

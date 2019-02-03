@@ -1,7 +1,5 @@
 /**
- * Rectangle shape.
- *
- * @class Rect
+ * @class CLASS.Rect
  * @param {Number} x
  * @param {Number} y
  * @param {Number} width
@@ -21,6 +19,19 @@ CLASS.Rect = function (x, y, width, height) {
 };
 
 CLASS.Rect.append = {
+    /**
+     * Mouse click event handler.
+     *
+     * @abstract
+     * @function onMouseClick
+     * @param {MouseEvent} e
+     * @api public
+     */
+
+    onMouseClick: function (e) {
+        this.abstract();
+    },
+
     /**
      * Are the point coordinates inside the rectangle?
      *

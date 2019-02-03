@@ -1,11 +1,11 @@
 /**
- * Store assets needed for game.
- *
- * @singleton AssetHelper
+ * @class SINGLE.AssetHelper
+ * @classdesc Store assets.
+ * @hideconstructor
  */
 
 SINGLE.AssetHelper = {
-    _pieceImages: {},
+    _pieceImageRegistry: {},
 
     /**
      * Load assets.
@@ -15,8 +15,8 @@ SINGLE.AssetHelper = {
      */
 
     init: function () {
-        this._pieceImages[CONST.BLACK] = {};
-        this._pieceImages[CONST.WHITE] = {};
+        this._pieceImageRegistry[CONST.BLACK] = {};
+        this._pieceImageRegistry[CONST.WHITE] = {};
 
         this._loadPieceImage(CONST.BLACK, CONST.KING, 'black-king');
         this._loadPieceImage(CONST.BLACK, CONST.PAWN, 'black-pawn');
@@ -34,6 +34,18 @@ SINGLE.AssetHelper = {
     },
 
     /**
+     * @function hasPieceImage
+     * @param {String} color
+     * @param {String} type
+     * @return {Boolean}
+     * @api public
+     */
+
+    hasPieceImage: function (color, type) {
+        return !isUndefined(this._pieceImageRegistry[color]) && !isUndefined(this._pieceImageRegistry[color][type]);
+    },
+
+    /**
      * @function getPieceImage
      * @param {String} color
      * @param {String} type
@@ -42,19 +54,7 @@ SINGLE.AssetHelper = {
      */
 
     getPieceImage: function (color, type) {
-        return this._pieceImageExists(color, type) ? this._pieceImages[color][type] : null;
-    },
-
-    /**
-     * @function pieceImageExists
-     * @param {String} color
-     * @param {String} type
-     * @return {Boolean}
-     * @api private
-     */
-
-    _pieceImageExists: function (color, type) {
-        return !isUndefined(this._pieceImages[color]) && !isUndefined(this._pieceImages[color][type]);
+        return this.hasPieceImage(color, type) ? this._pieceImageRegistry[color][type] : null;
     },
 
     /**
@@ -66,6 +66,6 @@ SINGLE.AssetHelper = {
      */
 
     _loadPieceImage: function (color, type, id) {
-        this._pieceImages[color][type] = document.getElementById(id);
+        this._pieceImageRegistry[color][type] = document.getElementById(id);
     }
 };

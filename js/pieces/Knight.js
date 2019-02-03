@@ -1,5 +1,6 @@
 /**
- * @class Knight
+ * @class CLASS.Knight
+ * @extends CLASS.Piece
  * @param {String} color
  */
 
@@ -24,8 +25,8 @@ CLASS.Knight.append = {
      */
 
     checkMoves: function (start, end) {
-        var v = start.calcVerticalDistance(end);
-        var h = start.calcHorizontalDistance(end);
+        let v = start.calcVerticalDistance(end);
+        let h = start.calcHorizontalDistance(end);
 
         return (v === 2 && h === 1) || (v === 1 && h === 2);
     }

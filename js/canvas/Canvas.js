@@ -1,13 +1,11 @@
 /**
- * HTMLCanvasElement module.
- *
- * @class Canvas
+ * @class CLASS.Canvas
  * @param {String} id
  */
 
 CLASS.Canvas = function (id) {
     this._el = document.getElementById(id);
-    this._context = this._el.getContext('2d');
+    this._context2D = this._el.getContext('2d');
 };
 
 CLASS.Canvas.append = {
@@ -17,17 +15,17 @@ CLASS.Canvas.append = {
      * @api public
      */
 
-    getElement: function () {
+    getHTMLElement: function () {
         return this._el;
     },
 
     /**
-     * @function getContext
+     * @function getContext2D
      * @return {CanvasRenderingContext2D}
      * @api public
      */
 
-    getContext: function () {
-        return this._context;
+    getContext2D: function () {
+        return this._context2D;
     }
 };

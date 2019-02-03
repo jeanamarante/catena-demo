@@ -1,5 +1,5 @@
 /**
- * @class Piece
+ * @class CLASS.Piece
  * @param {String} color
  * @param {String} type
  */
@@ -38,7 +38,7 @@ CLASS.Piece.append = {
      */
 
     checkVerticalMove: function (start, end, limit, strictLimit, skipPieces) {
-        var path = start.traceVerticalPath(end);
+        let path = start.traceVerticalPath(end);
 
         // Cells must be in the same column.
         if (!start.isInSameColumn(end) || !this._checkPath(end, path, skipPieces)) {
@@ -65,7 +65,7 @@ CLASS.Piece.append = {
      */
 
     checkHorizontalMove: function (start, end, limit, skipPieces) {
-        var path = start.traceHorizontalPath(end);
+        let path = start.traceHorizontalPath(end);
 
         // Cells must be in the same row.
         if (!start.isInSameRow(end) || !this._checkPath(end, path, skipPieces)) {
@@ -87,14 +87,14 @@ CLASS.Piece.append = {
      */
 
     checkDiagonalMove: function (start, end, limits, strictVerticalLimit, skipPieces) {
-        var path = start.traceDiagonalPath(end);
+        let path = start.traceDiagonalPath(end);
 
         // Cells cannot be in the same row or same column.
         if (!start.isDiagonal(end) || !this._checkPath(end, path, skipPieces)) {
             return false;
         }
 
-        var horizontalCheck = this._checkDistance(limits[1], start.calcHorizontalDistance(end));
+        let horizontalCheck = this._checkDistance(limits[1], start.calcHorizontalDistance(end));
 
         // Can only move in one direction vertically.
         if (strictVerticalLimit) {

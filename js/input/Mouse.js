@@ -1,26 +1,24 @@
 /**
- * Mouse input helper.
- *
- * @singleton Mouse
+ * @class SINGLE.Mouse
+ * @hideconstructor
  */
 
 SINGLE.Mouse = {
-    _canvas: null,
+    _el: null,
 
-    // Rect listeners.
-    _listeners: [],
+    _rectListeners: [],
 
     /**
      * <canvas> element that will listen to mouse events.
      *
-     * @function setCanvasRegion
-     * @param {HTMLCanvasElement}
+     * @function setClickRegion
+     * @param {HTMLElement}
      * @api public
      */
 
-    setCanvasRegion: function (canvas) {
-        this._canvas = canvas;
-        this._canvas.onclick = this._onCanvasClick.bind(this);
+    setClickRegion: function (htmlElement) {
+        this._el = htmlElement;
+        this._el.addEventListener('click', this._onHTMLElementClick.bind(this));
     },
 
     /**
@@ -30,26 +28,26 @@ SINGLE.Mouse = {
      */
 
     addRectListener: function (listener) {
-        if (!isInstance(CLASS.Rect, listener) || this._listeners.indexOf(listener) !== -1) { return undefined; }
-
-        this._listeners.push(listener);
+        if (isInstance(CLASS.Rect, listener)) {
+            this._rectListeners.push(listener);
+        }
     },
 
     /**
-     * Mouse click callback for canvas element.
+     * Mouse click callback for element.
      *
-     * @function onCanvasClick
+     * @function onHTMLElementClick
      * @param {MouseEvent} e
      * @api private
      */
 
-    _onCanvasClick: function (e) {
-        // Mouse click coordinates relative to the canvas region.
-        var x = e.layerX;
-        var y = e.layerY;
+    _onHTMLElementClick: function (e) {
+        // Mouse click coordinates relative to the element.
+        let x = e.layerX;
+        let y = e.layerY;
 
-        for (var i = 0, max = this._listeners.length; i < max; i++) {
-            var listener = this._listeners[i];
+        for (let i = 0, max = this._rectListeners.length; i < max; i++) {
+            let listener = this._rectListeners[i];
 
             if (listener.containsPoint(x, y)) {
                 listener.onMouseClick(e);

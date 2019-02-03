@@ -1,5 +1,6 @@
 /**
- * @class Bishop
+ * @class CLASS.Bishop
+ * @extends CLASS.Piece
  * @param {String} color
  */
 

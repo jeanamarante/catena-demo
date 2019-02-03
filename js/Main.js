@@ -1,15 +1,14 @@
 /**
  * Initialize app.
  *
- * @class Main
+ * @class CLASS.Main
  */
 
 CLASS.Main = function () {
-    var canvas = new CLASS.Canvas('App');
+    this._canvas = new CLASS.Canvas('app');
+    this._board = new CLASS.Board(this._canvas);
 
-    SINGLE.Mouse.setCanvasRegion(canvas.getElement());
-
-    this._board = new CLASS.Board(canvas);
+    SINGLE.Mouse.setClickRegion(this._canvas.getHTMLElement());
 };
 
 CLASS.Main.append = {
