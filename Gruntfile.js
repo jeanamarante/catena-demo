@@ -4,7 +4,7 @@ module.exports = function (grunt) {
     grunt.config.init({
         catena: {
             dist: {
-                src: 'js/',
+                src: ['js/'],
                 dest: 'dist/app.js',
                 options: {
                     license: 'LICENSE'
