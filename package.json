@@ -10,9 +10,6 @@
 		"url": "https://github.com/jeanamarante/catena-demo"
 	},
 	"license": "MIT",
-	"engines": {
-		"node": ">=0.10.0"
-	},
 	"devDependencies": {
 		"catena": "latest"
 	}
